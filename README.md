@@ -34,6 +34,12 @@ There are two ways to build the plugin. The first is with your IDEs integration
 with maven, if it has that. If not, you can run `mvn package` at the command
 line. Both of these methods should put a `.jar` in the `target` directory.
 
+You have one other option, if you're using this repository as a template.
+It uses the [just][just-gh] command runner and it's described in the
+[Building: Just Using Just](#building-just-using-just) section.
+
+[just-gh]: https://github.com/casey/just
+
 ### A quick note on CI
 Before we move on to the meat of this document, The Main Class, I'd like to
 mention CI. CI, in case you don't know, stands for Continuous Integration. Its
@@ -118,3 +124,25 @@ characters. It cannot be longer than 64 characters.
 
 It is also used as the name of the default configuration directory of your
 plugin.
+
+### Building: Just Using Just
+`just` is like `make`, if you've used that. You write commands to run in
+*recipes*, enabling you to call them from the command line with `just <recipe>`.
+
+I recommend checking it out! It's quite good; I like it and use it a lot!
+
+#### Just Recipies
+There are three main recipes, the rest just being helpers for those.
+
+**`just info`**  
+prints information parsed from the `pom.xml` file. i recommend checking this
+before running `just unpack` to be sure it has correct information.
+
+**`just unpack`**  
+packages the plugin, using `just package`, and then unzips the jar file into
+`target/unpacked` so you can check things if you need to. This is a good way
+to look at the `sponge_plugins.json` if you're having trouble with it.
+
+**`just package`**  
+simply runs `mvn package`. I have this because `justfile`s execute from the
+directory they are located in, but can be called from any directory below them.
