@@ -37,9 +37,9 @@
     <spongeapi.version>17.0.0</spongeapi.version>
 
     <!--Lets Maven know which Java versions we're expecting. In this
-    case, Java 8 -->
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    case, Java 21 -->
+    <maven.compiler.source>1.21</maven.compiler.source>
+    <maven.compiler.target>1.21</maven.compiler.target>
   </properties>
 
   <!-- Where should Maven look for dependecies? -->
