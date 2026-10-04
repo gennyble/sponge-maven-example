@@ -36,10 +36,10 @@
     <mainClass>${project.groupId}.SpongeMvnEx</mainClass>
     <spongeapi.version>17.0.0</spongeapi.version>
 
-    <!--Lets Maven know which Java versions we're expecting. In this
-    case, Java 21 -->
-    <maven.compiler.source>1.21</maven.compiler.source>
-    <maven.compiler.target>1.21</maven.compiler.target>
+    <!--Lets Maven know which Java versions we're expecting. This allows it to,
+    I think?, tell the java compiler how to form our classes. In this case, we're
+    targeting Java 21, which is what I am running my server with -->
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
   <!-- Where should Maven look for dependecies? -->
