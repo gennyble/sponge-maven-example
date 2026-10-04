@@ -8,7 +8,7 @@
 		"dependencies": [
 			{
 				"id": "spongeapi",
-				"version": "${spongeapi.version}",
+				"version": "${spongeapi.version}"
 			}
 		]
 	},
