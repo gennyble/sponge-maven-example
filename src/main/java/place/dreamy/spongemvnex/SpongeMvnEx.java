@@ -1,21 +1,23 @@
-import org.spongepowered.api.plugin.Plugin;
+package place.dreamy.spongemvnex;
+
+import org.apache.logging.log4j.Logger;
+import org.spongepowered.api.Server;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.game.state.GameStartedServerEvent;
+import org.spongepowered.api.event.lifecycle.StartedEngineEvent;
+import org.spongepowered.plugin.builtin.jvm.Plugin;
 
 // Imports for logger
 import com.google.inject.Inject;
-import org.slf4j.Logger;
 
 // Have a look here: https://docs.spongepowered.org/stable/en/plugin/plugin-class.html
-@Plugin(id = "spongemvnex", name = "Sponge Maven Example", version = "1.0", description = "Maven Example")
+@Plugin("spongemvnex")
 public class SpongeMvnEx {
 
     @Inject
     private Logger logger;
 
     @Listener
-    public void onServerStart(GameStartedServerEvent event) {
+    public void onServerStart(final StartedEngineEvent<Server> event) {
         logger.info("Successfully running the Sponge Maven Example Plugin!");
     }
-
 }

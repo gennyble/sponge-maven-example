@@ -9,20 +9,20 @@ is how this one is arranged:
 
 ##### `src/main/java` 
 The plugins soruce goes here. The main file for this project
-is at `dev.genbyte.spongemvnex.SpongeMvnEx` so the full path to that file, from
+is at `place.dreamy.spongemvnex.SpongeMvnEx` so the full path to that file, from
 the project root, would be
-`src/main/java/dev/genbyte/spongemvnex/SpongeMvnEx.java`.
+`src/main/java/place/dreamy/spongemvnex/SpongeMvnEx.java`.
 
 ##### `src/resources`
-The plugins resources go here. Stuff like the plugin.yml and a config.yml if you
+The plugins resources go here. Stuff like the `META-INF/sponge_plugins.json` and a `config.yml` if you
 have one.
 
-If you take a look at the [plugin.yml][pluginyml], you'll see that all the keys
+If you take a look at the [sponge_plugins.json][manifest], you'll see that all the keys
 currently in that file have a value of `${keyName}`. That's because those are
 variables that Maven will fill in when building the plugin. Look at the build
 section of the pom.xml file for more information.
 
-[pluginyml]: src/resources/plugin.yml
+[manifest]: src/resources/META-INF/sponge_plugins.json
 
 ### Building
 Building is done using maven because frankly I just prefer it (and I don't know
@@ -59,17 +59,16 @@ those instead.
 ```java
 // Imports exluded for brevity
 
-@Plugin(id = "spongemvnex", name = "Sponge Maven Example", version = "1.0", description = "Maven Example")
+@Plugin("spongemvnex")
 public class SpongeMvnEx {
 
     @Inject
     private Logger logger;
 
     @Listener
-    public void onServerStart(GameStartedServerEvent event) {
+    public void onServerStart(final StartedEngineEvent<Server> event) {
         logger.info("Successfully running the Sponge Maven Example Plugin!");
     }
-
 }
 ```
 
@@ -77,23 +76,18 @@ Let's break that down.
 
 The first line, well the first line that isn't a comment, is `@Plugin`. This
 annotation tells Sponge that this is a plugin and that it should load it. The
-annotation has some arguments, what do they mean? The `id` is, intuitively, the
-id of the plugin. This is the main identification of the plugin and can probably
-just be the name without spaces and all lowercase. Why Lowercase? See the
-`Plugin Identifier` section below. Next is the `name` field which is just your
-plugin name, `version` the plugin version, and `description` a short blurb
-about what your plugin does. In theory these can be populated from our pom.xml
-like we did with our plugin.yml, but I heard that was bad practice. I guess we
-should just remember to increment the version when we make a release.
+annotation has one argument, what does it mean? It's the main identification
+of the plugin and can probably just be the name without spaces and all lowercase.
+Why Lowercase? See the `Plugin Identifier` section below.
 
-Oh god, that was a long paragraph. Do you need a break? I do.
+Okay, it's been a lot of reading. Do you need a break? I do.
 
-Breaks over, sorry. Next is the `@Inject` annotation and the
+Well, break over, sorry. Next is the `@Inject` annotation and the
 `private Logger logger` line below it. Before I worked with the Sponge API,
 I hardly used annotations. Really, it was like maybe once a class? Now I use
 them all the time and life is better, I think. I again recommend you read the
 Sponge Docs on [Dependency Injection][spongedocs-injection], but I will provide
-my own short explanation (for posterity). When you put `@Inject` about a member
+my own short explanation (for posterity). When you put `@Inject` above a member
 declartion, you're telling a library from Google (Sponge says its `Guice`, I
 believe them) to shove an object of that type into that varaible. I think Sponge
 sets up the injector with a bunch of types and that's where you get the logger
@@ -103,7 +97,7 @@ from. I don't know, I'm not all knowing.
 
 What I do know, however, is what the next lines do. The `@Listener` annotation
 lets Sponge know that the function it's annotating should be put into the event
-loop. It will examine the type, in this case `GameStartedServerEvent`, and call
+loop. It will examine the type, in this case `StartedEngineEvent<Server>`, and call
 your method (`onServerStart`) when that event is processed. You can name the
 method anything you want, but it typically describes the event it takes and
 starts with `on`. It makes sense, really. "When does this function fire? It's

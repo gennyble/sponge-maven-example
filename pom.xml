@@ -5,34 +5,36 @@
 
   <!-- Convention is that this is your website (or email address) with the parts in
   reverse order and the name tacked on the back, All lowercase -->
-  <groupId>dev.genbyte.spongemvnex</groupId>
+  <groupId>place.dreamy.spongemvnex</groupId>
   <!-- Name of the resulting pacakge -->
   <artifactId>SpongeMvnEx</artifactId>
-  <!-- What kind of packaging to use. I've never seen anything other than jar -->
+  <!-- What kind of packaging to use. A jar, in this case, which is the default anyway -->
   <packaging>jar</packaging>
   <!-- Version -->
   <version>1.0.0</version>
 
   <!-- Name of the plugin -->
-  <name>SpongeMvnEx</name>
+  <name>${project.artifactId}</name>
   <!-- A short description of what its meant to do -->
-  <description>An example of using Maven with the Sponge API</description>
+  <description>Guide and Template for Sponge plugin developement with maven</description>
   <!-- URL. Could link to a project page or the code repo -->
-  <url>https://genbyte.dev</url><!-- TODO: add URL -->
+  <url>https://dreamy.place</url>
 
   <!-- Who wrote the code? -->
   <developers>
     <developer>
-      <name>Genuinebyte</name>
-      <url>https://genbyte.dev</url>
+      <name>Genevieve Raine</name>
+      <url>https://dreamy.place</url>
     </developer>
   </developers>
 
   <properties>
     <!-- These two values goes into the plugin.yml located
     in src/resources -->
-    <author>Genuinebyte</author>
-    <mainClass>dev.genbyte.spongemvnex.SpongeMvnEx</mainClass>
+    <author>Genevieve Raine</author>
+    <pluginId>spongemvnex</pluginId>
+    <mainClass>${project.groupId}.SpongeMvnEx</mainClass>
+    <spongeapi.version>17.0.0</spongeapi.version>
 
     <!--Lets Maven know which Java versions we're expecting. In this
     case, Java 8 -->
@@ -45,17 +47,17 @@
     <!-- Sponge Maven repository -->
     <repository>
       <id>sponge-repo</id>
-      <url>https://repo.spongepowered.org/maven</url>
+      <url>https://repo.spongepowered.org/repository/maven-public/</url>
     </repository>
   </repositories>
 
   <!-- What are the dependecies? -->
   <dependencies>
-    <!--Spigot API -->
+    <!--Sponge API 17.0.0 -->
     <dependency>
       <groupId>org.spongepowered</groupId>
       <artifactId>spongeapi</artifactId>
-      <version>7.2.0</version>
+      <version>${spongeapi.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -68,7 +70,7 @@
     <sourceDirectory>src/main/java</sourceDirectory>
     <!-- What should Maven do by default? In this case, cleanup from the last
     compilation and then do it again! -->
-    <defaultGoal>clean install</defaultGoal>
+    <defaultGoal>clean package</defaultGoal>
 
     <!-- Extra stuff to shove in the jar file -->
     <resources>
@@ -81,7 +83,7 @@
         <filtering>true</filtering>
         <!-- Include plugin.yml! -->
         <includes>
-          <include>plugin.yml</include>
+          <include>META-INF/sponge_plugins.json</include>
         </includes>
       </resource>
 
@@ -92,7 +94,7 @@
         <filtering>false</filtering>
         <!-- Don't do plugin.yml again, we did it above -->
         <excludes>
-          <exclude>plugin.yml</exclude>
+          <exclude>META-INF/sponge_plugins.json</exclude>
         </excludes>
       </resource>
     </resources>

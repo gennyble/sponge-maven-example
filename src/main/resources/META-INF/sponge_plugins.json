@@ -1,0 +1,24 @@
+{
+	"loader": {
+		"name": "java_plain",
+		"version": "1.0"
+	},
+	"license": "ISC",
+	"global": {
+		"dependencies": [
+			{
+				"id": "spongeapi",
+				"version": "${spongeapi.version}",
+			}
+		]
+	},
+	"plugins": [
+		{
+			"id": "${pluginId}",
+			"name": "${name}",
+			"entrypoint": "${mainClass}",
+			"version": "${version}",
+			"description": "${description}"
+		}
+	]
+}
