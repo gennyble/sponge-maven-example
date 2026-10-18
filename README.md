@@ -26,9 +26,9 @@ section of the pom.xml file for more information.
 
 ### Building
 Building is done using maven because frankly I just prefer it (and I don't know
-gradle). Have a look at the heavily commented [pom.xml][pomxml].
+gradle). Have a look at the heavily commented [pom-commented.xml][pomxml].
 
-[pomxml]: pom.xml
+[pomxml]: pom-commented.xml
 
 There are two ways to build the plugin. The first is with your IDEs integration
 with maven, if it has that. If not, you can run `mvn package` at the command
